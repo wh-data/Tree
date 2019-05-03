@@ -68,14 +68,19 @@ func ConstructTreeWithExampleData(data []*TreeNodeExampleData) (tree *TreeNode) 
 	}
 	count := 0
 	for {
-		if queue.Len() == 0 || count == queue.Len() { //count==queue.len()?doult?there should be bug here
+		if queue.Len() == 0 || count == queue.Len() {
 			break
 		}
 		e := queue.Front()
 		queue.Remove(e)
-		if d, ok := e.Value.(*TreeNodeExampleData); !ok {
-			fmt.Println("wrong type")
-		} else if parent, ok := tempmap[d.GetPid()]; ok {
+		d, ok := e.Value.(*TreeNodeExampleData)
+		if !ok {
+			fmt.Println("data type wrong! ")
+			queue.PushBack(e)
+			count++
+			continue
+		}
+		if parent, exist := tempmap[d.GetPid()]; exist {
 			node := NewTreeNode(d)
 			parent.Children = append(parent.Children, node)
 			tempmap[d.GetId()] = node

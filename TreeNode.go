@@ -108,3 +108,5 @@ func (node *TreeNode) SetSize() {
 //set left child
 //set right child
 //cut off from parent
+//go protobuf
+//map lock, unlock
