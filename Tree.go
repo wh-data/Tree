@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func ConstructTree(data []*TreeNodeData) (tree *TreeNode) {
+func ConstructTreeWithExampleData(data []*TreeNodeExampleData) (tree *TreeNode) {
 	root := NewTreeNode(nil)
 	tempmap := make(map[int]*TreeNode, 0)
 	queue := list.New()
@@ -26,7 +26,7 @@ func ConstructTree(data []*TreeNodeData) (tree *TreeNode) {
 		}
 		e := queue.Front()
 		queue.Remove(e)
-		if d, ok := e.Value.(*TreeNodeData); !ok {
+		if d, ok := e.Value.(*TreeNodeExampleData); !ok {
 			fmt.Println("wrong type")
 		} else if parent, ok := tempmap[d.GetPid()]; ok {
 			node := NewTreeNode(d)
