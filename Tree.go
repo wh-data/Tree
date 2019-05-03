@@ -11,6 +11,17 @@ type Tree struct {
 	Size   int
 }
 
+func NewTree(root *TreeNode) *Tree {
+	if root == nil {
+		return &Tree{}
+	}
+	return &Tree{
+		Root:   root,
+		Height: root.GetHeight(),
+		Size:   root.GetSize(),
+	}
+}
+
 func (tree *Tree) GetHeight() int {
 	if tree != nil {
 		return tree.Height
@@ -57,7 +68,7 @@ func ConstructTreeWithExampleData(data []*TreeNodeExampleData) (tree *TreeNode) 
 	}
 	count := 0
 	for {
-		if queue.Len() == 0 || count == queue.Len() {
+		if queue.Len() == 0 || count == queue.Len() { //count==queue.len()?doult?there should be bug here
 			break
 		}
 		e := queue.Front()
