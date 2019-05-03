@@ -5,6 +5,42 @@ import (
 	"fmt"
 )
 
+type Tree struct {
+	Root   *TreeNode
+	Height int
+	Size   int
+}
+
+func (tree *Tree) GetHeight() int {
+	if tree != nil {
+		return tree.Height
+	}
+	return 0
+}
+
+func (tree *Tree) GetSize() int {
+	if tree != nil {
+		return tree.Size
+	}
+	return 0
+}
+
+func (tree *Tree) SetHeight() {
+	if tree == nil && tree.Root != nil {
+		tree.Height = tree.Root.GetHeight()
+		return
+	}
+	return
+}
+
+func (tree *Tree) SetSize() {
+	if tree == nil && tree.Root != nil {
+		tree.Size = tree.Root.GetSize()
+		return
+	}
+	return
+}
+
 func ConstructTreeWithExampleData(data []*TreeNodeExampleData) (tree *TreeNode) {
 	root := NewTreeNode(nil)
 	tempmap := make(map[int]*TreeNode, 0)
