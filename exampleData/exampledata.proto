@@ -1,0 +1,12 @@
+
+syntax = "proto2";
+
+package exampleData;
+
+message TreeNodeExampleData{
+    optional int32 Id = 1;
+ 	optional int32 Pid = 2;
+	optional bytes Extinfo = 3;
+}
+
+

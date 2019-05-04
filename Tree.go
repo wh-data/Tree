@@ -1,10 +1,5 @@
 package Tree
 
-import (
-	"container/list"
-	"fmt"
-)
-
 type Tree struct {
 	Root   *TreeNode
 	Height int
@@ -50,46 +45,4 @@ func (tree *Tree) SetSize() {
 		return
 	}
 	return
-}
-
-func ConstructTreeWithExampleData(data []*TreeNodeExampleData) (tree *TreeNode) {
-	root := NewTreeNode(nil)
-	tempmap := make(map[int]*TreeNode, 0)
-	queue := list.New()
-	for _, d := range data {
-		e := queue.PushBack(d)
-		if d.GetPid() == 0 {
-			node := NewTreeNode(d)
-			root.Children = append(root.Children, node)
-			queue.Remove(e)
-			tempmap[d.GetId()] = node
-		}
-
-	}
-	count := 0
-	for {
-		if queue.Len() == 0 || count == queue.Len() {
-			break
-		}
-		e := queue.Front()
-		queue.Remove(e)
-		d, ok := e.Value.(*TreeNodeExampleData)
-		if !ok {
-			fmt.Println("data type wrong! ")
-			queue.PushBack(e)
-			count++
-			continue
-		}
-		if parent, exist := tempmap[d.GetPid()]; exist {
-			node := NewTreeNode(d)
-			parent.Children = append(parent.Children, node)
-			tempmap[d.GetId()] = node
-			count = 0
-		} else {
-			queue.PushBack(e)
-			count++
-		}
-
-	}
-	return root
 }
