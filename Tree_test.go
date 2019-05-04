@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"testing"
 
+	"github.com/gogo/protobuf/proto"
 	pb "github.com/wenhai0007/DataStructure/Tree/exampleData"
-	"playgroud/github.com/gogo/protobuf/proto"
 )
 
 //this function is for test usage
@@ -16,24 +16,6 @@ func NewTreeNodeExampleData(id, pid *int32, extinfo []byte) *pb.TreeNodeExampleD
 		Pid:     pid,
 		Extinfo: extinfo,
 	}
-}
-
-func TestTree(t *testing.T) {
-	data1 := NewTreeNodeExampleData(proto.Int32(1), proto.Int32(0), []byte("hello tree"))
-	data2 := NewTreeNodeExampleData(proto.Int32(2), proto.Int32(0), []byte("x"))
-	data3 := NewTreeNodeExampleData(proto.Int32(3), proto.Int32(1), []byte("y"))
-	dataArray := make([]*pb.TreeNodeExampleData, 0)
-	dataArray = append(dataArray, data1)
-	dataArray = append(dataArray, data2)
-	dataArray = append(dataArray, data3)
-	root := BuildTreeWithExampleData(dataArray)
-	//can use protobuf,  then print can show its value
-	if data, ok := root.GetChildByIndex(0).Data.(*pb.TreeNodeExampleData); ok {
-		t.Logf("The id is: %d, pid is: %d, extinfo is: %v\n", data.GetId(), data.GetPid(), string(data.Extinfo))
-	} else {
-		t.Log("wrong data type")
-	}
-
 }
 
 func BuildTreeWithExampleData(data []*pb.TreeNodeExampleData) (tree *TreeNode) {
@@ -76,4 +58,22 @@ func BuildTreeWithExampleData(data []*pb.TreeNodeExampleData) (tree *TreeNode) {
 
 	}
 	return root
+}
+
+func TestTree(t *testing.T) {
+	data1 := NewTreeNodeExampleData(proto.Int32(1), proto.Int32(0), []byte("hello tree"))
+	data2 := NewTreeNodeExampleData(proto.Int32(2), proto.Int32(0), []byte("x"))
+	data3 := NewTreeNodeExampleData(proto.Int32(3), proto.Int32(1), []byte("y"))
+	dataArray := make([]*pb.TreeNodeExampleData, 0)
+	dataArray = append(dataArray, data1)
+	dataArray = append(dataArray, data2)
+	dataArray = append(dataArray, data3)
+	root := BuildTreeWithExampleData(dataArray)
+	//can use protobuf,  then print can show its value
+	if data, ok := root.GetChildByIndex(0).Data.(*pb.TreeNodeExampleData); ok {
+		t.Logf("The id is: %d, pid is: %d, extinfo is: %v\n", data.GetId(), data.GetPid(), string(data.Extinfo))
+	} else {
+		t.Log("wrong data type")
+	}
+
 }
