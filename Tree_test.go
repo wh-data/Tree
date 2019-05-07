@@ -6,7 +6,7 @@ import (
 	"testing"
 
 	"github.com/gogo/protobuf/proto"
-	pb "github.com/wenhai0007/DataStructure/Tree/exampleData"
+	pb "github.com/wh-data/Tree/exampleData"
 )
 
 //this function is for test usage
